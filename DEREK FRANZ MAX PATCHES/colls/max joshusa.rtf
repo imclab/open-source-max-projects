@@ -1,0 +1,274 @@
+{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh9000\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf0 \
+the patch:\
+\
+max v2;\
+#N vpatcher 140 44 948 854;\
+#P origin 7 -72;\
+#P window setfont "Sans Serif" 9.;\
+#P message 347 253 26 196617 146;\
+#P message 290 253 23 196617 0.28;\
+#P newex 535 59 45 196617 loadbang;\
+#P message 535 79 26 196617 121;\
+#P newex 423 752 64 196617 route mouse;\
+#P newex 554 237 91 196617 scale 0 240 1. -1.;\
+#P newex 511 217 103 196617 scale 0 320 -1.5 1.5;\
+#P newex 423 778 45 196617 s mouse;\
+#P newex 553 195 40 196617 jit.iter;\
+#P newex 511 195 40 196617 jit.iter;\
+#P newex 229 186 65 196617 jit.rgb2luma;\
+#P user jit.cellblock 699 192 745 212 3 9 1 1 45 20 0 1 1 0 0 0 0 0 0 0 0 0\
+255 255 255 0 0 0 0 0 0 191 191 191 0 0 0 215 215 240 1 1 1 0 4 0 0 0;\
+#P user jit.cellblock 650 192 696 212 3 9 1 1 45 20 0 1 1 0 0 0 0 0 0 0 0 0\
+255 255 255 0 0 0 0 0 0 191 191 191 0 0 0 215 215 240 1 1 1 0 4 0 0 0;\
+#P user jit.cellblock 601 192 647 212 3 9 1 1 45 20 0 1 1 0 0 0 0 0 0 0 0 0\
+255 255 255 0 0 0 0 0 0 191 191 191 0 0 0 215 215 240 1 1 1 0 4 0 0 0;\
+#P newex 535 161 61 196617 jit.unpack 3;\
+#P comment 487 100 44 196617 stability;\
+#P newex 645 98 45 196617 r mouse;\
+#P message 535 118 52 196617 radius \\$1;\
+#P number 535 98 35 9 1 0 1 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P message 592 119 62 196617 set 0 \\$1 \\$2;\
+#P newex 535 139 113 196617 cv.jit.track @npoints 1;\
+#P message 592 99 48 196617 140 120;\
+#P newex 273 224 45 196617 loadbang;\
+#P number 5 447 35 9 0 1 3 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P comment 2 502 65 196617 0 = normal \\; 1 = inverse \\;;\
+#P message 5 465 49 196617 mode \\$1;\
+#P comment 459 489 253 196617 this just uses linear interpolation for the\
+feathering \\, but with the use of more "rings" and a little math \\, one\
+could introduce a softer feathering;\
+#P message 361 161 72 196617 dispose \\, clear;\
+#P comment 0 358 110 196617 unpack our movie and pack together with the\
+alpha channel of the matrix drawn inside the js object;\
+#P number 506 271 35 9 3 0 1 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P message 506 291 50 196617 slices \\$1;\
+#P newex 397 91 45 196617 loadbang;\
+#P message 397 119 79 196617 read dozer.mov;\
+#P message 292 119 28 196617 read;\
+#P message 362 119 27 196617 stop;\
+#P message 328 119 31 196617 start;\
+#P flonum 263 98 35 9 0.5 0 1 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P toggle 229 98 15 0;\
+#P newex 229 118 55 196617 qmetro 60;\
+#P newex 229 162 104 196617 jit.qt.movie 320 240;\
+#P newex 288 321 52 196617 t b l;\
+#P newex 112 414 20 196617 t b;\
+#P newex 112 448 68 196617 jit.pack;\
+#P newex 288 409 84 196617 route jit_matrix;\
+#P newex 288 436 90 196617 prepend out_name;\
+#P newex 288 345 128 196617 jit.matrix 4 char 320 240;\
+#P newex 112 360 88 196617 jit.unpack;\
+#P flonum 466 271 35 9 0 0 0 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P flonum 428 270 35 9 0 0 0 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P newex 407 291 80 196617 pak center 0. 0.;\
+#P flonum 347 271 35 9 0 0 0 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P message 347 291 55 196617 feather \\$1;\
+#P flonum 288 271 35 9 0 0 0 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P newex 112 484 69 196617 jit.alphablend;\
+#P user jit.fpsgui 112 758 60 196617 0;\
+#P user jit.pwindow 111 506 322 242 0 1 0 0 1 0;\
+#P newex 288 382 95 196617 js js_circlemask.js;\
+#P newex 280 31 45 196617 loadbang;\
+#P message 288 291 52 196617 radius \\$1;\
+#P message 280 59 82 196617 read dishes.mov;\
+#P user jit.fpsgui 40 131 60 196617 0;\
+#P message 175 59 28 196617 read;\
+#P message 245 59 27 196617 stop;\
+#P message 211 59 31 196617 start;\
+#P flonum 146 38 35 9 0.5 0 1 3 0 0 0 221 221 221 222 222 222 0 0 0;\
+#P toggle 112 38 15 0;\
+#P newex 112 58 55 196617 qmetro 60;\
+#P newex 112 102 104 196617 jit.qt.movie 320 240;\
+#P comment 457 530 253 196617 an example of how to use js \\, the sketch\
+class \\, and opengl to make a feathered circle alpha channel.;\
+#P connect 45 0 43 0;\
+#P fasten 1 0 8 0 117 125 45 125;\
+#P connect 3 0 2 0;\
+#P fasten 9 0 1 0 285 87 117 87;\
+#P fasten 5 0 1 0 216 85 117 85;\
+#P fasten 6 0 1 0 250 85 117 85;\
+#P fasten 7 0 1 0 180 85 117 85;\
+#P fasten 2 0 1 0 117 88 117 88;\
+#P connect 1 0 22 0;\
+#P connect 22 0 27 0;\
+#P connect 27 0 26 0;\
+#P fasten 24 0 26 0 293 444 117 444;\
+#P fasten 43 0 15 0 10 482 117 482;\
+#P connect 26 0 15 0;\
+#P connect 15 0 13 0;\
+#P connect 13 0 14 0;\
+#P connect 22 1 26 1;\
+#P connect 22 2 26 2;\
+#P connect 4 0 2 1;\
+#P connect 22 3 26 3;\
+#P fasten 58 0 15 1 234 483 176 483;\
+#P connect 31 0 30 0;\
+#P fasten 35 0 29 0 297 145 234 145;\
+#P fasten 34 0 29 0 367 145 234 145;\
+#P fasten 33 0 29 0 333 145 234 145;\
+#P fasten 36 0 29 0 402 147 234 147;\
+#P fasten 41 0 29 0 366 149 234 149;\
+#P fasten 30 0 29 0 234 148 234 148;\
+#P connect 29 0 58 0;\
+#P connect 32 0 30 1;\
+#P connect 11 0 9 0;\
+#P connect 16 0 10 0;\
+#P fasten 10 0 28 0 293 313 293 313;\
+#P fasten 17 0 28 0 352 313 293 313;\
+#P fasten 19 0 28 0 412 315 293 315;\
+#P fasten 38 0 28 0 511 317 293 317;\
+#P fasten 46 0 23 0 278 340 293 340;\
+#P connect 28 0 23 0;\
+#P connect 23 0 12 0;\
+#P connect 28 1 12 0;\
+#P connect 12 0 25 0;\
+#P connect 25 0 24 0;\
+#P fasten 46 0 67 0 278 247 295 247;\
+#P fasten 46 0 68 0 278 247 352 247;\
+#P connect 68 0 18 0;\
+#P connect 18 0 17 0;\
+#P connect 37 0 36 0;\
+#P connect 13 1 64 0;\
+#P connect 64 0 61 0;\
+#P fasten 62 0 20 0 516 261 433 261;\
+#P connect 20 0 19 1;\
+#P fasten 63 0 21 0 559 262 471 262;\
+#P connect 21 0 19 2;\
+#P connect 39 0 38 0;\
+#P fasten 54 0 59 0 540 186 516 186;\
+#P connect 59 0 62 0;\
+#P connect 66 0 65 0;\
+#P connect 65 0 50 0;\
+#P connect 50 0 51 0;\
+#P connect 51 0 48 0;\
+#P fasten 49 0 48 0 597 136 540 136;\
+#P fasten 58 0 48 0 234 210 496 210 496 135 540 135;\
+#P connect 48 0 54 0;\
+#P connect 54 1 60 0;\
+#P connect 60 0 63 0;\
+#P connect 47 0 49 0;\
+#P fasten 52 0 49 0 650 117 597 117;\
+#P fasten 54 0 55 0 540 185 606 185;\
+#P fasten 54 1 56 0 557 189 655 189;\
+#P fasten 54 2 57 0 574 189 704 189;\
+#P pop;\
+\
+\
+the js file:\
+\
+/*\
+\
+making a circular mask with sketch\
+\
+*/\
+\
+var img = new Image();\
+var imgtmp = new Image();\
+var mysketch = new Sketch(320,240);\
+var sintab = new Array();\
+var costab = new Array();\
+var vx=0;\
+var vy=0;\
+var vrad=1.;\
+var vfeather=0.2;\
+var vslices;\
+\
+mysketch.fsaa = 0;\
+mysketch.default2d();\
+slices(100);\
+\
+function slices(v)\
+\{\
+	var i,iscale;\
+\
+	vslices = Math.max(3,v);\
+	iscale = 2*Math.PI/(vslices-1);\
+	for (i=0;i<vslices;i++) \{\
+		sintab[i] = Math.sin(i*iscale);\
+		costab[i] = Math.cos(i*iscale);\
+	\}\
+\}\
+\
+function radius(v)\
+\{\
+	vrad = Math.max(0,v);\
+\}\
+\
+function feather(v)\
+\{\
+	vfeather = Math.max(0,v);\
+\}\
+\
+function center(x,y)\
+\{\
+	vx = x;\
+	vy = y;\
+\}\
+\
+function draw()\
+\{\
+	var i,inrad;\
+	\
+	inrad = Math.max(0,vrad-vrad*vfeather); //feather as a percentage\
+of radius\
+\
+	with (mysketch) \{\
+		glclearcolor(0,0,0,1);\
+		glclear();		\
+		// first draw the inner circle, white (all on)	\
+		glbegin("tri_strip");\
+		glcolor(1,1,1,1);\
+		for (i=0;i<vslices;i++) \{\
+			glvertex(vx,vy);\
+		       \
+glvertex(vx+(inrad*sintab[i]),vy+(inrad*costab[i]));\
+		\}\
+		glend();\
+		// then draw the outer ring, linearly interpolating from\
+white to black \
+		glbegin("tri_strip");\
+		for (i=0;i<vslices;i++) \{\
+			glcolor(1,1,1,1);\
+		       \
+glvertex(vx+(inrad*sintab[i]),vy+(inrad*costab[i]));\
+			glcolor(0,0,0,1);\
+			glvertex(vx+(vrad*sintab[i]),vy+(vrad*costab[i]));\
+		\}\
+		glend();\
+	\}\
+\}\
+\
+// when we receive a jit_matrix message: resize if necessary, draw the\
+image, stuff into the alpha channel, and pass on\
+function jit_matrix(mname)\
+\{\
+	img.fromnamedmatrix(mname);\
+\
+	if ((img.size[0]!=mysketch.size[0]) ||\
+(img.size[1]!=mysketch.size[1])) \{\
+		mysketch.size[0] = image.size[0];\
+		mysketch.size[1] = image.size[1];\
+	\}\
+\
+	draw();\
+\
+	if ((imgtmp.size[0]!=mysketch.size[0]) ||\
+(imgtmp.size[1]!=mysketch.size[1])) \{\
+		imgtmp = new Image(mysketch);\
+	\} else \{\
+		imgtmp.copypixels(mysketch);\
+	\}\
+	img.copychannel(imgtmp,"red","alpha");\
+	img.tonamedmatrix(mname);\
+	outlet(0,"jit_matrix",mname);\
+\}\
+\
+\
+\
+}
