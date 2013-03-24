@@ -1,3 +1,5 @@
+This is a repository of MAX MSP GEN patches.  It is going to take serious work organizing and putting this in cohesive order. ALPHA
+****************************************************************************************************************************
 Soundcloud Sounderizer -- pulls songs from soundcloud directly into Ableton for INTERNET REMIXING/MASHUPS/ETC. --functional, but needs a few things (check todo list in patch)
 
 
