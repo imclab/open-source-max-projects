@@ -1,0 +1,89 @@
+OVERVIEW
+
+This is an MXJ object which launches an embedded web server. It uses
+the pure Java web server Jetty (http://www.mortbay.org/). We support
+interaction with the Max world: Max is informed of URL information
+from web browsers, and can inject attributes back into JSPs.
+
+We have included the necessary Jetty JAR files, and other
+utilities such as log4j, in this distribution.
+
+INSTALLATION
+
+Copy the JAR files to the Cycling '74/java/lib directory (or modify
+max.java.config.txt to search in the appropriate directory). Be sure
+to remove old or obsolete versions.
+
+Copy the files in the examples/ folder into Max's search path.
+
+ISSUES
+
+When Jetty starts up, it logs to the standard error stream, rather than
+standard output, so some error messages appear in the Max console. This
+behaviour appears to be benign.
+
+We've added support for request parameters, to allow data to be passed
+between the web world and Max. There's no guarantee that a "round trip"
+request (from a browser URL into Max and back via a JSP) will work
+atomically, especially since Jetty will be multithreading requests from
+(potentially) multiple clients, so the linkage should be regarded as
+somewhat decoupled, to say the least. At some stage we might think about
+tagging each request to allow Max to deal with contextual data from
+multiple simultaneous clients (would that be polyphonic?).
+
+JSP compilation requires Apache Ant; Jetty comes bundled with Ant 1.6.5,
+which is somewhat behind the current release (1.7.0 at the time of
+writing). Hopefully this won't confuse any software (or users); if it
+does, I'll have a bash with 1.7.0.
+
+LICENSE
+
+This software is issued under the terms of the GNU Lesser General Public License
+(see COPYING.LESSER).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+CREDITS
+
+Many thanks to Adam Murray (adam@compusition.com) for sterling efforts
+on the parameter and JSP support.
+
+CONTACT
+
+Nick Rothwell, nick@cassiel.com / nick@loadbang.net
+
+RELEASES
+
+* (1.1) 2008-05-03:
+
+Added some Max5 example code using jweb.
+
+* 1.1, 2008-04-18:
+
+Oops: server was ignoring @port attribute and always starting on 8080!
+
+* 1.0, 2008-01-25:
+
+No code changes, but a version bump to 1.0 for public release.
+
+* 0.9b2, 2008-01-18:
+
+Integration of Adam Murray's support for GET and POST parameters,
+and the attribute injection for JSP support. Added
+form and JSP page and patcher to the examples. Fudged support for
+HEAD requests no longer needed.
+
+* 0.9b1, 2008-01-16:
+
+Initial beta release.

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Source: /home/cvs/CASSIEL-DEV/mxj-development/web/java/build.xml,v $ -->
+<!-- $Id: build.xml,v 1.4 2008/01/16 18:49:01 nick Exp $ -->
+
+<!--
+	Copyright (C) 2008 Nick Rothwell, nick@cassiel.com / nick@loadbang.net
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE project [
+	<!ENTITY ant-defs SYSTEM "../MXJ-basis/ant-defs.xml">
+]>
+
+<project name="web" default="usage">
+	&ant-defs;
+
+	<property file="properties/net/loadbang/web/props/VERSION.properties" />
+	
+	<path id="cp">
+		<pathelement path="${JMOCK.JAR}:${JUNIT.JAR}:${JMOCK-JUNIT.JAR}:${HAMCREST.JAR}" />
+		<pathelement path="${JETTY.JAR}:${JETTY-UTIL.JAR}:${SERVLET-API.JAR}" />
+		<pathelement location="${MAX.JAR}" />
+		<pathelement location="${LOADBANG.CLASSES}" />
+	</path>
+	
+	<target name="usage">
+		<echo message="usage: print this message" />
+	</target>
+
+	<target name="compile">
+		<__compile classpath-id="cp" />
+	</target>
+
+	<target
+		name="unit-tests"
+		description="run unit tests"
+		depends="compile"
+	>
+		<__unit-tests classpath-id="cp" />
+	</target>
+
+	<target name="jar.web" depends="compile" description="build JAR file for loadbang.net web library">
+		<__jar jar-name="net.loadbang.web" title="loadbang.net web library" version="${VERSION}" />
+	</target>
+	
+	<target name="javadoc.web" description="Javadoc for net.loadbang.web">
+		<__javadoc
+			javadoc-packages="net.loadbang.web, net.loadbang.web.*"
+			javadoc-classpath =
+				"${LOADBANG.CLASSES}:${MAX.JAR}:${JETTY.JAR}:${JETTY-UTIL.JAR}:${SERVLET-API.JAR}"
+		/>
+	</target>
+	
+	<property name="PACKAGE_NAME" value="net.loadbang.web-${VERSION}-${RELEASE_DATE}" />
+
+	<target name="package" depends="GLOBAL.clean, GLOBAL.jar.lib, jar.web, javadoc.web">
+		<zip destfile="${BUILD_OUTPUT_COMMON}/${PACKAGE_NAME}.zip">
+			<zipfileset dir="." prefix="${PACKAGE_NAME}">
+				<include name="README" />
+			</zipfileset>
+
+			<zipfileset dir="../MXJ-basis" prefix="${PACKAGE_NAME}">
+				<include name="COPYING*" />
+			</zipfileset>
+			
+			<zipfileset dir="${BUILD_OUTPUT_COMMON}" prefix="${PACKAGE_NAME}/jar">
+				<include name="net.loadbang.lib-*.jar" />
+				<include name="net.loadbang.web-*.jar" />
+			</zipfileset>
+
+			<zipfileset dir="../3rd-party" prefix="${PACKAGE_NAME}/jar">
+				<include name="log4j-*.jar" />
+			</zipfileset>
+			
+			<zipfileset dir="../3rd-party/jetty-6.1.7" prefix="${PACKAGE_NAME}/jar">
+				<include name="*.jar" />
+			</zipfileset>
+			
+			<zipfileset dir="${MAX_SEARCH}/loadbang.net/web" prefix="${PACKAGE_NAME}/examples">
+				<exclude name="**/CVS*" />
+			</zipfileset>
+			
+			<zipfileset dir="." prefix="${PACKAGE_NAME}/src">
+				<exclude name=".classes/**" />
+				<exclude name=".BUILD/**" />
+				<include name="**/*.java" />
+				<include name="**/*.properties" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.xml" />
+			</zipfileset>
+			
+			<zipfileset dir=".BUILD/javadoc" prefix="${PACKAGE_NAME}/javadoc" />
+		</zip>
+	</target>
+</project>

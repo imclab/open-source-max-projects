@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="properties/|unit-tests/|unit-tests/properties/" kind="src" path=""/>
+	<classpathentry kind="src" path="properties"/>
+	<classpathentry excluding="properties/" kind="src" path="unit-tests"/>
+	<classpathentry kind="src" path="unit-tests/properties"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MXJ-basis"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MXJ-library"/>
+	<classpathentry kind="lib" path="/MXJ-basis/max.jar"/>
+	<classpathentry kind="lib" path="/3rd-party/jetty-6.1.7/jetty-6.1.7.jar"/>
+	<classpathentry kind="lib" path="/3rd-party/jetty-6.1.7/jetty-util-6.1.7.jar"/>
+	<classpathentry kind="lib" path="/3rd-party/jetty-6.1.7/servlet-api-2.5-6.1.7.jar"/>
+	<classpathentry kind="output" path=".classes"/>
+</classpath>

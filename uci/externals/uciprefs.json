@@ -1,0 +1,12 @@
+{
+	"engines" : 	{
+		"Stockfish 2.3.1 64bit" : 		{
+			"Use Debug Log" : 1,
+			"Best Book Move" : 1,
+			"OwnBook" : 1,
+			"UCI_Chess960" : 1
+		}
+
+	}
+
+}
