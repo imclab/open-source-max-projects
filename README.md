@@ -7,8 +7,8 @@ Soundcloud Sounderizer -- pulls songs from soundcloud directly into Ableton for 
 
 Didgeridoo Live Performance -- To be created
 
-Derek Franz Patches -- A friend of mine, who's quite prolific at Max...I'm looking ot make sure his various patches don't disappear into the ethers. 
-
+Derek Franz Patches -- A friend of mine, who's quite prolific at Max...I'm looking to make sure his various patches don't disappear into the ethers. 
+Chris Harbster -- 
 ----
 My intention is to put a stack of max patches up on here that I've around somewhere...
 
