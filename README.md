@@ -1,4 +1,5 @@
 This is a growing repository of MAX MSP patches.  It is going to take serious work organizing and putting this in cohesive order. ALPHA
+I hope to encourage open-source collaboration, so contributions are welcome!
 ****************************************************************************************************************************
 Soundcloud Sounderizer -- pulls songs from soundcloud directly into Ableton for INTERNET REMIXING/MASHUPS/ETC. --functional, but needs a few things (check todo list in patch)
 
